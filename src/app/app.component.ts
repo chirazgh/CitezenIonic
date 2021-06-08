@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { ToastController, MenuController } from '@ionic/angular';
+import * as $ from "jquery";
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-root',
@@ -10,60 +11,121 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
+  ImageUser;
+  UserName: String;
+  listUsers: any = [];
+  isItemAvailable = false;
+  listAll: any = [];
+  searchBarEmpty;
+
+  
+
+  getItems(ev: any) {
+    const val = ev.target.value;
+    if (val && val.trim() !== '') {
+      this.isItemAvailable = true;
+      this.listAll = this.listAll.filter((item) => {
+        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    } else {
+      this.isItemAvailable = false;
+    }
+  }
+  
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Accueil',
+      url: '/map',
+      icon: 'home'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: "Ajouter un point d'intérêt",
+      url: '/ajout-post',
+      icon: 'add-circle'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Profile',
+      url: '/profile',
+      icon: 'person'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Déconnexion',
+      url: '/logout',
+      icon: 'log-out'
     },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  constructor(private _us: UserService, private router: Router, private toastController: ToastController,
+    public menuCtrl: MenuController) {
+    /* this.menuCtrl.enable(true, 'first'); */
+    /*if(('#userInexistant').valueOf()!=""){
+      this.searchBarEmpty=false;
+    }
+    else 
+    this.searchBarEmpty=true;*/
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
-    this.initializeApp();
+    
+
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+  toggleMenu() {
+    this.menuCtrl.toggle();
+  }
+
+  closeMenu() {
+    this.menuCtrl.close();
+  }
+
+  doRefresh(ev:any)
+  {
+    console.log("refresh");
+    
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+
+    this._us.getCurrenUser().subscribe(async(user) => {
+      let usr = <any>Object;
+      usr = user;
+      this.UserName = usr.nom.toUpperCase() + " " + usr.prenom.toUpperCase();
+      this.ImageUser = await usr.img;
+      this.menuCtrl.enable(true, 'first');
     }
+    );
+
+    this._us.getAllUsersNames().subscribe((res) => {
+
+      this.listUsers = res;
+      console.log(this.listUsers)
+      this.listUsers.map((el) => {
+        this.listAll.push({ id: Number(("" + el).substring(0, el.indexOf(" "))), name: ("" + el).substring(el.indexOf(" "), ("" + el).length) })
+      })
+      console.log(this.listAll)
+    }, (err) => { })
+
   }
+
+
+  goToProfile() {
+    this.menuCtrl.close();
+    this.router.navigateByUrl('/profile')
+  }
+
+  searchUser(id) {
+    this._us.ifUserExists(id).subscribe(async (res) => {
+      let a = <any>Object;
+      a = await res;
+      if (a.message) {
+        this.router.navigate(['/profiles', { idUser: id }]);
+      }
+      else {
+        $("#userInexistant").show;
+      }
+
+    })
+
+  }
+
+
+
+
 }

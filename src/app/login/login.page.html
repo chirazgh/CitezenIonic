@@ -1,0 +1,62 @@
+<ion-content>
+
+    <ion-card color="light">
+        <ion-card-header>
+            <ion-card-title style="font-weight: lighter;">Se connecter</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list padding>
+                <form class="login100-form validate-form" [formGroup]="loginUserForm">
+                    <ion-item lines="full">
+                        <ion-label position="floating" stacked>
+                            <ion-icon name="person" item-start class="text-primary"></ion-icon>
+                            Email
+                        </ion-label>
+                        <ion-input type="email" id="email" name="email" formControlName="email" required></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="email.touched && email.invalid">
+                        <p style="color: red;" *ngIf="email.errors.required">l email est obligatoire</p>
+                        <p style="color: red;" *ngIf="email.errors.email">l'email est invalid !</p>
+                    </ion-item>
+
+                    <ion-item lines="full">
+                        <ion-label position="floating" stacked>
+                            <ion-icon name="lock-closed-outline" item-start class="text-primary"></ion-icon>
+                            Mot de passe
+                        </ion-label>
+                        <ion-input type="password" id="motDePass" name="motDePass" formControlName="motDePass" required>
+                        </ion-input>
+                    </ion-item>
+
+                    <ion-item *ngIf="motDePass.touched && motDePass.invalid">
+                        <p style="color: red;" *ngIf="motDePass.errors.required">le mot De Passe est obligatoire
+                        </p>
+                        <p style="color: red;" *ngIf="motDePass.errors.minlength">min 8!</p>
+                    </ion-item>
+
+                    <!-- <ion-item>
+
+                        <ion-checkbox color="primary" id="ckb1" type="checkbox" name="remember-me"></ion-checkbox>
+                        &nbsp; &nbsp;
+                        <ion-label> Remember me </ion-label>
+                    </ion-item>
+ -->
+                </form>
+            </ion-list>
+
+
+            <div>
+                <ion-button color="primary" size="large" type="submit" expand="block" (click)="login()">Sign in</ion-button>
+            </div>
+
+            <ion-row>
+                <div text-center>
+                    Vous n'avez pas encore un compte?
+                    <a (click)="goToInscription()" style="color: blue;">
+                        <b>Inscription</b>
+                    </a>
+                </div>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModel()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        Liste Abonnements
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <!-- <div class="modal-dialog ">
+        <div class="modal-content">
+
+            <div class="padding">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="list list-row block" *ngFor="let a of suivisAbonne;">
+                            <div class="list-item" data-id="19">
+                                <div>
+                                    <a (click)='goToUserProfile2(a.id)' data-abc="true">
+                                        <ion-avatar slot="start" item-start item-left class="w-48 avatar gd-warning">
+                                            <img [src]="a.img">
+                                        </ion-avatar>
+                                    </a>
+                                </div>
+                                <div class="flex">
+                                    <a (click)='goToUserProfile2(a.id)' href data-abc="true">
+                                        <ion-label class="item-author text-color" item-end>{{a.prenom}} {{a.nom}}</ion-label>
+                                    </a>
+                                </div>
+                                <div class="no-wrap">
+                                    <div class="item-date text-muted text-sm d-none d-md-block"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="card" style="width: 360px;">
+        <ul class="list-group pmd-list pmd-card-list pmd-list-avatar" *ngFor="let a of suivisAbonne;">
+            <li class="list-group-item d-flex align-items-center" (click)="goToUserProfile(a.id)">
+                <ion-avatar slot="start" class="pmd-avatar-list-img">
+                    <img alt="40x40" class="img-fluid" [src]="a.img">
+                </ion-avatar> &nbsp; &nbsp; &nbsp;&nbsp;
+                <h5 class="pmd-list-title">
+                    {{a.prenom | titlecase}} {{a.nom | titlecase}}
+                </h5>
+
+            </li>
+        </ul>
+    </div>
+</ion-content>

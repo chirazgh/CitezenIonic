@@ -1,0 +1,213 @@
+<ion-header translucent no-border>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        Profile
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" slot="fixed">
+    <div id="backimage" class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 300px;  background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+            <div class="row">
+                <div class="col-lg-7 col-md-10">
+                    <h1 class="display-2 text-white">Hello {{pren}}</h1>
+                    <p class="text-white mt-0 mb-5">Ici c'est votre profilé vous y trouverez vos postes que de ceux que vous avez enregistrés.</p>
+                    <!-- <a href="#!" class="btn btn-info">Edit profile</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                <div class="card card-profile shadow">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 order-lg-2">
+                            <div class="card-profile-image">
+                                <a>
+                                    <img [src]="imageUser" class="rounded-circle" (click)="mdifModal()">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                        <div class="d-flex justify-content-between" style="color: white;">
+                            <button id="bshowmodif" (click)="showmodifProf()" class="btn btn-sm btn-info mr-4">Modifier</button>
+                            <button id="bhidemodif" (click)="hidemodifProf()" class="btn btn-sm btn-info mr-4">gallery</button>
+                            <!-- <a href="#" class="btn btn-sm btn-default float-right">Message</a> -->
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 pt-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                    <div (click)="listAbonne()">
+                                        <span class="heading">{{nbAbonements}}</span>
+                                        <span class="description">Abonné à</span>
+                                    </div>
+                                    <div>
+                                        <span class="heading">{{nbPosts}}</span>
+                                        <span class="description">Posts</span>
+                                    </div>
+                                    <div (click)="suiviAbonne()">
+                                        <span class="heading">{{nbSuivits}}</span>
+                                        <span class="description">Suivit par</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3>
+                                {{nomUser}}<span class="font-weight-light">, {{age}}ans</span>
+                            </h3>
+                            <div class="h5 font-weight-300">
+                                <i class="ni location_pin mr-2"></i>{{adresse}}
+                            </div>
+                            <div class="h5 mt-4">
+                                <i class="ni business_briefcase-24 mr-2"></i>{{email}}
+                            </div>
+                            <div>
+                                <i class="ni education_hat mr-2"></i>{{tel}}
+                            </div>
+                            <!-- <hr class="my-4" />
+                      <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
+                          and records all of his own music.</p>
+                      <a href="#">Show more</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div id="modifProf" class="card-body">
+                        <form>
+                            <h6 class="heading-small text-muted mb-4">Informations de l'utilisateur</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="nomM">Nom</label>
+                                            <input type="text" id="nomM" class="form-control form-control-alternative" placeholder="Nom">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="prenomM">Prenom</label>
+                                            <input type="text" id="prenomM" class="form-control form-control-alternative" placeholder="Prenom">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="addemailM">Adresse email</label>
+                                            <input type="email" id="addemailM" class="form-control form-control-alternative" placeholder="Adresse email">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="dattnaissM">Date de naissance</label>
+                                            <ion-datetime id="dattnaissM" class="form-control" placeholder="Date de naissance" required></ion-datetime>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <!-- Address -->
+                            <h6 class="heading-small text-muted mb-4">Informations de contact</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="adresseM">Adresse</label>
+                                            <input id="adresseM" class="form-control form-control-alternative" placeholder="Home Address" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="telM">Numéro de téléphoen</label>
+                                            <input type="text" id="telM" class="form-control form-control-alternative" placeholder="(+216)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <!-- Mot de passe -->
+                            <h6 class="heading-small text-muted mb-4">Mot de passe</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="motDePasseM">Mot de passe</label>
+                                            <input type="password" id="motDePasseM" class="form-control form-control-alternative" placeholder="Mot de passe">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="reMotDePasseM">Resaisir mot de
+                                                passe</label>
+                                            <input type="password" id="reMotDePasseM" class="form-control form-control-alternative" placeholder="Resaisir mot de passe">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+
+                            <div class="col-4 text-right" style="color: white;float: right;">
+                                <button class="btn btn-sm btn-primary" (click)="modifProfile()">Modifier</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 id="titrePosts" class="mb-0">Mes posts</h3>
+                                <h3 id="titreEnregs" class="mb-0">Mes enregistremet</h3>
+                            </div>
+                            <div class="col-4 text-right" style="color: white;">
+                                <button id="bposts" (click)="showenregistrer()" class="btn btn-sm btn-primary">Enregistrements</button>
+                                <button id="benregistrers" (click)="hideenregistrer()" class="btn btn-sm btn-primary">Posts</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <ion-grid id="gallery" class="image-grid">
+                        <ion-row class="single-row" *ngFor="let p of userPosts;">
+                            <ion-col col-4 class="single-image">
+                                <img height="80%" width="100%" [src]="p.post_id.imageP" (click)="openModel(p.post_id.id)" alt="ImagePost">
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                    <ion-grid id="enregistrer" class="image-grid">
+                        <ion-row class="single-row" *ngFor="let p of enregitrerPosts;">
+                            <ion-col col-4 class="single-image">
+                                <img height="80%" width="100%" [src]="p.post_id.imageP" (click)="openModelSaved(p.post_id.id)" alt="ImagePost">
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Footer -->
+        <footer class="footer">
+
+        </footer>
+    </div>
+
+</ion-content>

@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Ajouter Poste</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card color="light" class="card-center">
+        <ion-card-header>
+            <ion-card-title style="font-weight: lighter;color: #ea6153;">Nouvelle découverte?</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+            <ion-list lines="none" color="light">
+                <form name="ajoutPost" [formGroup]="ajoutPostForm" (ngSubmit)="ajoutPost()">
+
+                    <ion-item>
+                        <ion-list>
+                            <!--  <ion-input type="file" id="img" name="img" formControlName="img" accept="image/*"
+                    (change)=" onFileSelected($event)" ng-model="post." required></ion-input> -->
+                            Choisir une image
+                            <ion-item>
+                                <ion-button (click)="addPhotoGallerie()" id="img" name="img" color="medium" expand="block" accept="image/*">
+                                    <ion-icon name="image" slot="start"></ion-icon>
+                                    Gallerie
+                                </ion-button>
+
+                                <ion-button (click)="addPhotoCamera()" color="secondary" expand="block">
+                                    <ion-icon name="camera" slot="start"></ion-icon>
+                                    Camera
+                                </ion-button>
+                            </ion-item>
+                            <ion-item>
+                                <div class="flex">
+                                    <div class="img-box" style="width: 100%; height: 50%;">
+                                        <img [src]="image" id="img" name="img">
+                                    </div>
+                                </div>
+                            </ion-item>
+                        </ion-list>
+                    </ion-item>
+
+                    <ion-item>
+
+                        <ion-button style="align-self: center;" (click)="openmap()" data-toggle="modal">Chercher dans la map
+                        </ion-button>
+                    </ion-item>
+
+                    <ion-item lines="full">
+                        <ion-label position="floating">
+                            <ion-icon item-start class="text-primary"></ion-icon>
+
+                        </ion-label>
+                        <ion-input type="text" name="coordonnees" id="coordonnees" placeholder="coordonnées" disabled>
+                        </ion-input>
+                    </ion-item>
+
+                    <ion-item lines="full">
+                        <ion-label position="floating">
+                            <ion-icon item-start class="text-primary"></ion-icon>
+                            Titre
+                        </ion-label>
+                        <ion-input type="text" id="titreP" name="titreP" formControlName="titreP"></ion-input>
+                    </ion-item>
+
+                    <ion-item lines="full">
+                        <ion-label position="floating">
+                            <ion-icon item-start class="text-primary"></ion-icon>
+                            Description
+                        </ion-label>
+                        <ion-textarea type="text" id="descriptionP" name="descriptionP" formControlName="descriptionP">
+                        </ion-textarea>
+                    </ion-item>
+
+                    <ion-item lines="full">
+                        <ion-item>
+                            <ion-toggle slot="start" name="blueberry" id="signe" name="signe" (ionChange)="FieldsChange($event)" formControlName="signe" checked="false"></ion-toggle>
+                            <ion-label id="labsigne" for="signe">{{status}}</ion-label>
+                        </ion-item>
+                    </ion-item>
+
+
+                    <ion-item style="color: white;float: right;">
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-button type="submit" color="danger" expand="block" (click)="ajoutPost()">
+                                    Ajouter
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+
+                </form>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>

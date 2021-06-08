@@ -1,0 +1,184 @@
+<ion-content>
+    <ion-slides #signupSlider>
+        <ion-card color="light" class="card-center">
+            <ion-card-header>
+                <ion-card-title style="font-weight: lighter;">S'inscrire</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <div class="card-body">
+                    <form name="inscrit" class="needs-validation" [formGroup]="inscriptionUserForm">
+                        <h6 class="heading-small text-muted mb-4">Informations de l'utilisateur</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+
+                                <div class="col-lg-6 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="nom">Nom</ion-label>
+
+                                        <ion-input type="text" id="nom" formControlName="nom" ng-model="user." class="form-control" placeholder="Nom" required></ion-input>
+
+                                    </div>
+                                    <div *ngIf="nom.touched && nom.invalid">
+                                        <p style="color: red;" *ngIf="nom.errors.required">le nom est obligatoire</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="prenom">Prénom</ion-label>
+
+                                        <ion-input type="text" id="prenom" formControlName="prenom" ng-model="user." class="form-control" placeholder="prenom" required></ion-input>
+
+                                    </div>
+                                    <div *ngIf="prenom.touched && prenom.invalid">
+                                        <p style="color: red;" *ngIf="prenom.errors.required">le prenom est obligatoire</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="cin">CIN</ion-label>
+
+                                        <ion-input type="text" id="cin" formControlName="cin" ng-model="user." class="form-control" placeholder="cin" required></ion-input>
+
+                                    </div>
+                                    <div *ngIf="cin.touched && cin.invalid">
+                                        <p style="color: red;" *ngIf="cin.errors.required">le CIN est obligatoire</p>
+                                        <p style="color: red;" *ngIf="cin.errors.minlength">min 8!</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-6 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="email">Adresse email</ion-label>
+
+                                        <ion-input type="email" id="email" formControlName="email" ng-model="user." class="form-control" placeholder="Adresse email" required></ion-input>
+
+                                    </div>
+                                    <div *ngIf="email.touched && email.invalid">
+                                        <p style="color: red;" *ngIf="email.errors.required">l'email est obligatoire</p>
+                                        <p style="color: red;" *ngIf="email.errors.email">l'email est invalid !</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="dateNaiss">Date de naissance</ion-label>
+                                        <ion-datetime id="dateNaiss" formControlName="dateNaiss" ng-model="user." class="form-control" placeholder="Date de naissance" required></ion-datetime>
+                                    </div>
+                                    <div *ngIf="dateNaiss.touched && dateNaiss.invalid">
+                                        <p style="color: red;" *ngIf="dateNaiss.errors.required">La date de naissance est obligatoire</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <!-- Address -->
+                        <h6 class="heading-small text-muted mb-4">Informations de contact</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+
+
+                                <div class="col-md-12 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="adresse">Adresse</ion-label>
+                                        <ion-input type="text" id="adresse" formControlName="adresse" ng-model="user." class="form-control" placeholder="Adresse" required></ion-input>
+                                    </div>
+                                    <div *ngIf="adresse.touched && adresse.invalid">
+                                        <p style="color: red;" *ngIf="adresse.errors.required">L'adresse est obligatoire</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-4 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="tel">Numéro de téléphone</ion-label>
+
+                                        <ion-input type="text" id="tel" formControlName="tel" ng-model="user." class="form-control" placeholder="Numéro de téléphone" required></ion-input>
+
+                                    </div>
+                                    <div *ngIf="tel.touched && tel.invalid">
+                                        <p style="color: red;" *ngIf="tel.errors.required">le Numéro de téléphone est obligatoire</p>
+                                        <p style="color: red;" *ngIf="tel.errors.minlength">min 8!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <!-- Mot de passe -->
+                        <h6 class="heading-small text-muted mb-4">Mot de passe</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+
+                                <div class="col-lg-6 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="motDePass">Mot de passe</ion-label>
+
+                                        <ion-input type="password" id="motDePass" formControlName="motDePass" ng-model="user." class="form-control" placeholder="Mot de passe" required></ion-input>
+
+                                    </div>
+                                    <div *ngIf="motDePass.touched && motDePass.invalid">
+                                        <p style="color: red;" *ngIf="motDePass.errors.required">le mot de passe est obligatoire</p>
+                                        <p style="color: red;" *ngIf="motDePass.errors.minlength">min 8!</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-6 md-form">
+                                    <div class="form-group">
+                                        <ion-label class="form-control-ion-label" for="ReMotDePass">Resaisir le mot de passe</ion-label>
+
+                                        <ion-input type="password" id="ReMotDePass" formControlName="ReMotDePass" ng-model="user." class="form-control" placeholder="Resaisir le mot de passe" required></ion-input>
+
+                                    </div>
+                                    <div *ngIf="ReMotDePass.touched && ReMotDePass.invalid">
+                                        <p style="color: red;" *ngIf="ReMotDePass.errors.required">le mot de passe est obligatoire</p>
+                                        <p style="color: red;" *ngIf="ReMotDePass.errors.minlength">min 8!</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <!-- Description -->
+                        <h6 class="heading-small text-muted mb-4">Votre Image</h6>
+                        <div class="pl-lg-4 md-form">
+
+                            <div class="form-group">
+                                <ion-button (click)="addPhoto()" color="medium" expand="block" accept="image/*">
+                                    <ion-icon name="image" slot="start"></ion-icon>
+                                    Ouvrir gallerie
+                                </ion-button>
+                            </div>
+                            <div class="flex">
+                                <div class="img-box" style="width: 100%; height: 30%; left: 50%;">
+                                    <img [src]="image" id="img" name="img">
+
+                                </div>
+                            </div>
+                        </div><br><br>
+
+                        <section>
+                            <div class="pl-lg-4" style="color: white">
+                                <!-- <ion-button class="btn btn-primary btn-sm btn-rounded" type="submit" expand="block" [disabled]="!signupSlider.valid">
+                               
+                            </ion-button> -->
+                                <ion-button color="primary" size="large" type="submit" expand="block" (click)="inscription()">S'inscrire</ion-button>
+
+                            </div>
+                        </section>
+
+                    </form>
+                </div>
+
+            </ion-card-content>
+        </ion-card>
+    </ion-slides>
+
+</ion-content>

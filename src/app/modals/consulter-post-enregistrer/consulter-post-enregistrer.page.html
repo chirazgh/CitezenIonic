@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModel()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div style="background-color: #93d2d2;">
+        <img id="imageUserS" src="" alt="Avatar" class="avatar" style="
+                vertical-align: middle;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                box-shadow: 0px 15px 16.83px 0.17px #93d2d2;" (click)="goToUserProfile(idUserPost)" />
+        <ion-title size="large" class="modal-title text-right" id="usernameS" (click)="goToUserProfile(idUserPost)">
+        </ion-title>
+    </div>
+    <ion-card>
+        <img id="imagePS" src="" style="
+    width: 340px;
+    height: 200px;">
+        <ion-card-header>
+            <ion-card-subtitle style="color: #3880ff; opacity: 0.5;" id="regionPS"></ion-card-subtitle>
+            <ion-card-title style="font-size: x-large; font-weight: bold;" id="titrePS"></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <div class="form-group" style="font-size: large;" id="descriptionPS"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning" data-toggle="modal" (click)="modifier()">
+          <ion-icon name="create"></ion-icon>
+        </button>
+                <button type="button" class="btn btn-outline-danger" (click)="supprimerPostEnregistrer()">
+          <i class="fa fa-trash-o fa-lg"></i>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button (click)="toggleMenu()"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Accueil</ion-title>
+    </ion-toolbar>
+    <ion-searchbar id="search" debounce="500" autocomplete="on" showCancelButton="true" (ionClear)="ionClear($event)" (ionChange)="getItemsUser($event)" placeholder="Chercher Poste Utilisateur">
+    </ion-searchbar>
+    <ion-list *ngIf="isItemAvailable">
+        <ion-item *ngFor="let item of listAll">
+            <h4 style="text-align: center;" auto-hide="false" id="itemsearch" (click)="searchUserPost(item.id)">
+                {{ item.name }}
+            </h4>
+        </ion-item>
+    </ion-list>
+
+    <!-- <hr no-margin no-padding> -->
+    <!-- Story line -->
+    <div class="fixed">
+        <div class="story" scrollX="true">
+            <div class="story_scroll" *ngFor="let s of storysUser;let i=index">
+                <div class="story_img_bg">
+                    <img no-margin no-padding class="story_img" [src]="s.datePost.img" (click)="storys(s)"></div>
+                <p no-margin no-padding text-center class="story_text"> {{ s.datePost.prenom | titlecase }} {{ s.datePost.nom | titlecase }}
+                </p>
+            </div>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content>
+
+    <div id="map" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="mapOptions"></div>
+
+</ion-content>

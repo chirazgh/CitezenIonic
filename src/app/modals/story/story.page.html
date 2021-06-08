@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModel()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+    <div style="background-color: #93d2d2;">
+        <img id="imageUsers" (click)='goToUserProfileS()' src="" alt="Avatar" class="avatar" style="
+                        vertical-align: middle;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        box-shadow: 0px 15px 16.83px 0.17px #93d2d2;
+                      "> &nbsp;&nbsp;
+        <ion-title size="large" class="modal-title text-right" id="usernames" (click)="goToUserProfileS()"></ion-title>
+    </div>
+
+    <ion-card>
+        <!-- <div class="signup-image"> -->
+        <div *ngFor="let s of storysUser;let i=index">
+            <img id="imagePs" src="" style="width: 340px; height: 380px;">
+        </div>
+        <ion-card-content>
+            <a class="region-image-link" id="regionP"></a>
+            <!--  </div> -->
+            <!--   <div style="align-content: center;">
+                <a id="ToPrevious" style="font-size: 100px; align-self: start;" (click)="ToPrevious()" class="previous round">&#8249;</a>
+                <a id="ToNext" style="font-size: 100px; align-self: end;" (click)="ToNext()" class="next round">&#8250;</a>
+            </div> -->
+
+        </ion-card-content>
+
+        <ion-row class="cardfooter">
+            <ion-col>
+                <div style="align-content: center;">
+                    <a id="ToPrevious" style="font-size: 100px; align-self: start;" (click)="ToPrevious()" class="previous round">&#8249;</a>
+                    <a id="ToNext" style="font-size: 100px; align-self: end;" (click)="ToNext()" class="next round">&#8250;</a>
+                </div>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>
+
+
+</ion-content>
